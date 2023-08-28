@@ -41,7 +41,7 @@ namespace Server
                     receivedBytes = handler.Receive(incomeBuffer);
                     incomeMessage = Encoding.UTF8.GetString(incomeBuffer, 0, receivedBytes);
 
-                    if(incomeMessage == "GET_CHAT")
+                    if(incomeMessage == "GET_PREDICTIONS")
                     {
                         BacklogTextBox.Invoke(new Action(() => { outcomeMessage = BacklogTextBox.Text; }));
                         outcomeBuffer = Encoding.UTF8.GetBytes(outcomeMessage);

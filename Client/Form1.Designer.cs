@@ -264,6 +264,7 @@
             this.MinimumSize = new System.Drawing.Size(731, 593);
             this.Name = "Form1";
             this.Text = "Horoscopes";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.ControllGroupBox.ResumeLayout(false);
             this.ControllGroupBox.PerformLayout();
             this.ConnectionParamsGroupBox.ResumeLayout(false);
