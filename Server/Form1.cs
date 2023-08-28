@@ -11,6 +11,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using static System.Windows.Forms.AxHost;
+using Server.HoroscopesDB;
 
 namespace Server
 {
@@ -18,10 +19,13 @@ namespace Server
     {
         private Socket server;
         private Thread dedicatedThread;
+        private HoroscopesDbContext predictions;
 
         public Form1()
         {
             InitializeComponent();
+
+            predictions = new HoroscopesDbContext();
         }
 
         private void ThreadMethod()
