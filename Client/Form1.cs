@@ -14,7 +14,6 @@ namespace Client
 {
     public partial class Form1 : Form
     {
-        
         Socket client;
 
         public Form1()
@@ -22,6 +21,8 @@ namespace Client
             InitializeComponent();
         }
 
+        //Метод "ControlElementsSwitcher" розроблений для зменшення коду, він дозволяє перемикати видимість окремих елементів контролю
+        //Параметр "action" потрібен для визначення того яка дія зараз виконується, "connect" або "disconnect"
         private void ControlElementsSwitcher(string action)
         {
             StartButton.Enabled = !StartButton.Enabled;
@@ -52,18 +53,25 @@ namespace Client
             byte[] incomeBuffer = new byte[1024];
             byte[] outcomeBuffer;
 
-            if (string.IsNullOrEmpty(PredictionRequestTextBox.Text))
+            try
             {
-                MessageBox.Show("Nothing to send!", "Empty field!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            else
-            {
-                outcomeBuffer = Encoding.UTF8.GetBytes(PredictionRequestTextBox.Text);
-                client.Send(outcomeBuffer);
+                if (string.IsNullOrEmpty(PredictionRequestTextBox.Text))
+                {
+                    MessageBox.Show("Nothing to send!", "Empty field!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    outcomeBuffer = Encoding.UTF8.GetBytes(PredictionRequestTextBox.Text);
+                    client.Send(outcomeBuffer);
 
-                receivedBytes = client.Receive(incomeBuffer);
-                PredictionsLogTextBox.Text = Encoding.UTF8.GetString(incomeBuffer, 0, receivedBytes);
-                PredictionsLogTextBox.Clear();
+                    receivedBytes = client.Receive(incomeBuffer);
+                    PredictionsLogTextBox.Text = Encoding.UTF8.GetString(incomeBuffer, 0, receivedBytes);
+                    PredictionRequestTextBox.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "An exception occurred during sending a message!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

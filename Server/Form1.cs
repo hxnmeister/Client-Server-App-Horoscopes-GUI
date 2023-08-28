@@ -66,6 +66,8 @@ namespace Server
             }
         }
 
+        //Метод "ControlElementsSwitcher" розроблений для зменшення коду, він дозволяє перемикати видимість окремих елементів контролю
+        //Параметр "action" потрібен для визначення того яка дія зараз виконується, "start" або "stop"
         private void ControlElementsSwitcher(string action)
         {
             StopButton.Enabled = !StopButton.Enabled;
