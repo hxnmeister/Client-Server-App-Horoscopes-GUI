@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using Server.HoroscopesDB;
+using System.Collections.Generic;
 
 namespace Server
 {
@@ -38,7 +39,7 @@ namespace Server
                     receivedBytes = handler.Receive(incomeBuffer);
                     incomeMessage = Encoding.UTF8.GetString(incomeBuffer, 0, receivedBytes);
 
-                    if(incomeMessage == "GET_SERVER_LOG")
+                    if(incomeMessage == "GET_PREDICTIONS")
                     {
                         BacklogTextBox.Invoke(new Action(() => { outcomeMessage = BacklogTextBox.Text; }));
                         outcomeBuffer = Encoding.UTF8.GetBytes(outcomeMessage);
@@ -48,8 +49,9 @@ namespace Server
                     {
                         bool found = false;
                         HoroscopesDbContext predictions = new HoroscopesDbContext();
+                        List<ZodiacSign> zodiacSignsNames = predictions.ZodiacSigns.ToList();
 
-                        foreach (var item in predictions.ZodiacSigns.ToList())
+                        foreach (var item in zodiacSignsNames)
                         {
                             if(item.Name.ToUpper() == incomeMessage.ToUpper())
                             {
@@ -63,9 +65,8 @@ namespace Server
                         }
 
                         if (!found) MessageBox.Show("Check your input and try again!", "Not found!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        if (!string.IsNullOrEmpty(incomeMessage)) BacklogTextBox.Invoke(new Action(() => { BacklogTextBox.Text += $"{DateTime.Now}: {incomeMessage}\r\n"; }));
                     }
-
-                    if(!string.IsNullOrEmpty(incomeMessage)) BacklogTextBox.Invoke(new Action(() => { BacklogTextBox.Text += $"{DateTime.Now}: {incomeMessage}\r\n"; }));
 
                     handler.Shutdown(SocketShutdown.Both);
                     handler.Close();
