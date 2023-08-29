@@ -56,11 +56,16 @@ namespace Client
                 }
                 else
                 {
+                    string incomeMessage;
+
                     outcomeBuffer = Encoding.UTF8.GetBytes(PredictionRequestTextBox.Text);
                     client.Send(outcomeBuffer);
 
                     receivedBytes = client.Receive(incomeBuffer);
-                    PredictionsLogTextBox.Text += Encoding.UTF8.GetString(incomeBuffer, 0, receivedBytes) + "\r\n";
+                    incomeMessage = Encoding.UTF8.GetString(incomeBuffer, 0, receivedBytes);
+
+                    if(string.IsNullOrEmpty(incomeMessage)) MessageBox.Show("Check your input and try again!", "Not found!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    else PredictionsLogTextBox.Text += incomeMessage + "\r\n";
                     PredictionRequestTextBox.Clear();
                 }
             }

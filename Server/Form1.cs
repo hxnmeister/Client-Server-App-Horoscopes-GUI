@@ -47,7 +47,6 @@ namespace Server
                     }
                     else
                     {
-                        bool found = false;
                         HoroscopesDbContext predictions = new HoroscopesDbContext();
                         List<ZodiacSign> zodiacSignsNames = predictions.ZodiacSigns.ToList();
 
@@ -59,12 +58,10 @@ namespace Server
 
                                 outcomeBuffer = Encoding.UTF8.GetBytes($" Prediction for {item.Name}: {predictions.Predictions.Where(x => x.Id == randomNumber).Select(y => y.Content).FirstOrDefault()}");
                                 handler.Send(outcomeBuffer);
-                                found = true;
                                 break;
                             }
                         }
 
-                        if (!found) MessageBox.Show("Check your input and try again!", "Not found!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         if (!string.IsNullOrEmpty(incomeMessage)) BacklogTextBox.Invoke(new Action(() => { BacklogTextBox.Text += $"{DateTime.Now}: {incomeMessage}\r\n"; }));
                     }
 
