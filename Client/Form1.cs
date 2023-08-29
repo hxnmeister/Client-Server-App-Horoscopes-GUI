@@ -76,14 +76,13 @@ namespace Client
 
         private void ClearButton_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(PredictionRequestTextBox.Text))
+            if (string.IsNullOrEmpty(PredictionsLogTextBox.Text))
             {
                 MessageBox.Show("Nothing to clear!", "Empty field!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
-                PredictionRequestTextBox.Clear();
-                PredictionRequestTextBox.Focus();
+                PredictionsLogTextBox.Clear();
             }
         }
 

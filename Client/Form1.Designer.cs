@@ -199,7 +199,7 @@
             this.ClearButton.Name = "ClearButton";
             this.ClearButton.Size = new System.Drawing.Size(98, 45);
             this.ClearButton.TabIndex = 2;
-            this.ClearButton.Text = "Clear Request";
+            this.ClearButton.Text = "Clear Log";
             this.ClearButton.UseVisualStyleBackColor = true;
             this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
             // 

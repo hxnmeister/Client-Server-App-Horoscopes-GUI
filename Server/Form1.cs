@@ -65,7 +65,7 @@ namespace Server
                         if (!found) MessageBox.Show("Check your input and try again!", "Not found!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
 
-                    BacklogTextBox.Invoke(new Action(() => { BacklogTextBox.Text += $"{DateTime.Now}: {incomeMessage}\r\n"; }));
+                    if(!string.IsNullOrEmpty(incomeMessage)) BacklogTextBox.Invoke(new Action(() => { BacklogTextBox.Text += $"{DateTime.Now}: {incomeMessage}\r\n"; }));
 
                     handler.Shutdown(SocketShutdown.Both);
                     handler.Close();
