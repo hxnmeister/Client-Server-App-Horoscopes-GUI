@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Client
@@ -69,6 +64,10 @@ namespace Client
                     PredictionRequestTextBox.Clear();
                 }
             }
+            catch (SocketException se)
+            {
+                MessageBox.Show(se.Message, "Socket exception!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "An exception occurred during sending a message!", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -97,6 +96,10 @@ namespace Client
 
                 ControlElementsSwitcher("connect");
             }
+            catch (SocketException se)
+            {
+                MessageBox.Show(se.Message, "Socket exception!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "An exception occurred during server startup!", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -111,6 +114,10 @@ namespace Client
                 client.Close();
 
                 ControlElementsSwitcher("disconnect");
+            }
+            catch (SocketException se)
+            {
+                MessageBox.Show(se.Message, "Socket exception!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {

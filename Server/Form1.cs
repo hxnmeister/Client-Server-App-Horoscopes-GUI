@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
-using static System.Windows.Forms.AxHost;
 using Server.HoroscopesDB;
 
 namespace Server
@@ -19,13 +15,10 @@ namespace Server
     {
         private Socket server;
         private Thread dedicatedThread;
-        private HoroscopesDbContext predictions;
 
         public Form1()
         {
             InitializeComponent();
-
-            predictions = new HoroscopesDbContext();
         }
 
         private void ThreadMethod()
@@ -54,6 +47,7 @@ namespace Server
                     else
                     {
                         bool found = false;
+                        HoroscopesDbContext predictions = new HoroscopesDbContext();
 
                         foreach (var item in predictions.ZodiacSigns.ToList())
                         {
@@ -127,6 +121,10 @@ namespace Server
 
                 ControlElementsSwitcher("start");
             }
+            catch(SocketException se)
+            {
+                MessageBox.Show(se.Message, "Socket exception!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "An exception occurred during server startup!", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -141,6 +139,10 @@ namespace Server
                 server.Close();
 
                 ControlElementsSwitcher("stop");
+            }
+            catch (SocketException se)
+            {
+                MessageBox.Show(se.Message, "Socket exception!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
