@@ -65,7 +65,7 @@ namespace Client
                     client.Send(outcomeBuffer);
 
                     receivedBytes = client.Receive(incomeBuffer);
-                    PredictionsLogTextBox.Text = Encoding.UTF8.GetString(incomeBuffer, 0, receivedBytes);
+                    PredictionsLogTextBox.Text += Encoding.UTF8.GetString(incomeBuffer, 0, receivedBytes) + "\r\n";
                     PredictionRequestTextBox.Clear();
                 }
             }

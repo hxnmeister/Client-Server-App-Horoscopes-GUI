@@ -45,7 +45,7 @@ namespace Server
                     receivedBytes = handler.Receive(incomeBuffer);
                     incomeMessage = Encoding.UTF8.GetString(incomeBuffer, 0, receivedBytes);
 
-                    if(incomeMessage == "GET_PREDICTIONS")
+                    if(incomeMessage == "GET_SERVER_LOG")
                     {
                         BacklogTextBox.Invoke(new Action(() => { outcomeMessage = BacklogTextBox.Text; }));
                         outcomeBuffer = Encoding.UTF8.GetBytes(outcomeMessage);
@@ -53,8 +53,25 @@ namespace Server
                     }
                     else
                     {
-                        BacklogTextBox.Invoke(new Action(() => { BacklogTextBox.Text += $"{DateTime.Now}: {incomeMessage}\r\n"; }));
+                        bool found = false;
+
+                        foreach (var item in predictions.ZodiacSigns.ToList())
+                        {
+                            if(item.Name.ToUpper() == incomeMessage.ToUpper())
+                            {
+                                int randomNumber = new Random().Next(1, 21);
+
+                                outcomeBuffer = Encoding.UTF8.GetBytes($" Prediction for {item.Name}: {predictions.Predictions.Where(x => x.Id == randomNumber).Select(y => y.Content).FirstOrDefault()}");
+                                handler.Send(outcomeBuffer);
+                                found = true;
+                                break;
+                            }
+                        }
+
+                        if (!found) MessageBox.Show("Check your input and try again!", "Not found!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
+
+                    BacklogTextBox.Invoke(new Action(() => { BacklogTextBox.Text += $"{DateTime.Now}: {incomeMessage}\r\n"; }));
 
                     handler.Shutdown(SocketShutdown.Both);
                     handler.Close();

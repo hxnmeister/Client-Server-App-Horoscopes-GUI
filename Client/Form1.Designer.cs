@@ -58,7 +58,7 @@
             this.ControllGroupBox.Controls.Add(this.StartButton);
             this.ControllGroupBox.Controls.Add(this.ServerStatusColorLabel);
             this.ControllGroupBox.Controls.Add(this.ServerStatusLabel);
-            this.ControllGroupBox.Location = new System.Drawing.Point(422, 143);
+            this.ControllGroupBox.Location = new System.Drawing.Point(427, 417);
             this.ControllGroupBox.Margin = new System.Windows.Forms.Padding(4);
             this.ControllGroupBox.Name = "ControllGroupBox";
             this.ControllGroupBox.Padding = new System.Windows.Forms.Padding(4);
@@ -125,7 +125,7 @@
             this.ConnectionParamsGroupBox.Controls.Add(this.PortInputTextBox);
             this.ConnectionParamsGroupBox.Controls.Add(this.IPLabel);
             this.ConnectionParamsGroupBox.Controls.Add(this.IPInputTextBox);
-            this.ConnectionParamsGroupBox.Location = new System.Drawing.Point(422, 13);
+            this.ConnectionParamsGroupBox.Location = new System.Drawing.Point(427, 287);
             this.ConnectionParamsGroupBox.Margin = new System.Windows.Forms.Padding(4);
             this.ConnectionParamsGroupBox.Name = "ConnectionParamsGroupBox";
             this.ConnectionParamsGroupBox.Padding = new System.Windows.Forms.Padding(4);
@@ -183,9 +183,9 @@
             this.PredictionRequestGroupBox.Controls.Add(this.ClearButton);
             this.PredictionRequestGroupBox.Controls.Add(this.SendButton);
             this.PredictionRequestGroupBox.Controls.Add(this.PredictionRequestTextBox);
-            this.PredictionRequestGroupBox.Location = new System.Drawing.Point(422, 273);
+            this.PredictionRequestGroupBox.Location = new System.Drawing.Point(427, 13);
             this.PredictionRequestGroupBox.Name = "PredictionRequestGroupBox";
-            this.PredictionRequestGroupBox.Size = new System.Drawing.Size(281, 269);
+            this.PredictionRequestGroupBox.Size = new System.Drawing.Size(281, 115);
             this.PredictionRequestGroupBox.TabIndex = 4;
             this.PredictionRequestGroupBox.TabStop = false;
             this.PredictionRequestGroupBox.Text = "Prediction Request";
@@ -195,7 +195,7 @@
             this.ClearButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ClearButton.Enabled = false;
-            this.ClearButton.Location = new System.Drawing.Point(150, 218);
+            this.ClearButton.Location = new System.Drawing.Point(150, 64);
             this.ClearButton.Name = "ClearButton";
             this.ClearButton.Size = new System.Drawing.Size(98, 45);
             this.ClearButton.TabIndex = 2;
@@ -208,7 +208,7 @@
             this.SendButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SendButton.Enabled = false;
-            this.SendButton.Location = new System.Drawing.Point(33, 218);
+            this.SendButton.Location = new System.Drawing.Point(33, 64);
             this.SendButton.Name = "SendButton";
             this.SendButton.Size = new System.Drawing.Size(100, 45);
             this.SendButton.TabIndex = 1;
@@ -223,9 +223,8 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PredictionRequestTextBox.Enabled = false;
             this.PredictionRequestTextBox.Location = new System.Drawing.Point(6, 22);
-            this.PredictionRequestTextBox.Multiline = true;
             this.PredictionRequestTextBox.Name = "PredictionRequestTextBox";
-            this.PredictionRequestTextBox.Size = new System.Drawing.Size(269, 190);
+            this.PredictionRequestTextBox.Size = new System.Drawing.Size(269, 23);
             this.PredictionRequestTextBox.TabIndex = 0;
             // 
             // PredictionsLogGroupBox
